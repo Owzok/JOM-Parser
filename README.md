@@ -16,7 +16,7 @@ To evaluate the structures we will implement the following functions:
 - **Remove**: remove a record from the file.
 
 ## 📊 Data
-We will use two Kaggle datasets to simulate our SQL parser: [NBA](https://www.kaggle.com/datasets/ethanchen44/nba-playoff-predictions) and [Tornados](https://www.kaggle.com/ datasets/danbraswell/us-tornado-dataset-1950-2021). These datasets contain NBA playoff predictions and US tornado data, respectively, we will use a different file organization structure for each dataset and make one file containing the indices for each record for easy access. Both datasets were extracted from Kaggle and contain around 3,000 and 70,000 records, respectively.
+We will use two Kaggle datasets to simulate our SQL parser: [NBA](https://www.kaggle.com/datasets/ethanchen44/nba-playoff-predictions) and [Tornados](https://www.kaggle.com/datasets/danbraswell/us-tornado-dataset-1950-2021). These datasets contain NBA playoff predictions and US tornado data, respectively, we will use a different file organization structure for each dataset and make one file containing the indices for each record for easy access. Both datasets were extracted from Kaggle and contain around 3,000 and 70,000 records, respectively.
 
 ## 📝 Expected Results
 After performing a comparison of AVL and Extensible-Hashing performance based on the functions implemented using the two datasets, we will measure the following metrics:
