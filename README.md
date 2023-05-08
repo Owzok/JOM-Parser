@@ -2,89 +2,82 @@
 
 # 💻 JOM Parser  ![a](https://img.shields.io/badge/C%2B%2B-20-blue) ![a](https://img.shields.io/badge/repo%20size-6mb-orange)
 
-> Proyecto 1 con tema de "Organización de archivos" para Base de Datos II (CS2042) - Utec, con Prof. Heider Sanchez.
+> Project 1 with the theme of "File Organization" for Database II (CS2042) - Utec.
 
-## Objetivo
-El objetivo de nuestro proyecto es implementar y comparar dos estructuras de organización de archivos para lograr una recuperación y manipulación de datos eficiente. Específicamente, compararemos el rendimiento de las siguientes estructuras:
+## Goal
+The goal of our project is to implement and compare two file organization structures for efficient data retrieval and manipulation. Specifically, we will compare the performance of the following structures:  
 - [AVL File](https://en.wikipedia.org/wiki/AVL_tree)
 - [Extendible-Hashing](https://en.wikipedia.org/wiki/Extendible_hashing)
 
-Para evaluar las estructuras implementaremos las siguientes funciones:
-- **Search**: dada una llave, retornaremos los registros respectivos.
-- **Range search**: Dado un rango de llaves, retornar todos los registros cuyas llaves se encuentren dentro del rango.
-- **Add**: añadir un nuevo registro al archivo.
-- **Remove**: eliminar un registro del archivo.
+To evaluate the structures we will implement the following functions:
+- **Search**: given a key, we will return the respective records.
+- **Range search**: Given a range of keys, return all records whose keys are within the range.
+- **Add**: add a new record to the file.
+- **Remove**: remove a record from the file.
 
-## 📊 Datos
-Usaremos dos datasets de Kaggle para simular nuestro parser SQL: [NBA](https://www.kaggle.com/datasets/ethanchen44/nba-playoff-predictions) y [Tornados](https://www.kaggle.com/datasets/danbraswell/us-tornado-dataset-1950-2021). Estos datasets contienen predicciones para los playoffs de la NBA y datos sobre tornados en EE.UU. Respectivamente, usaremos una estructura de organización de archivo diferente para cada dataset y haremos un archivo que contenga los índices para cada registro de manera que facilite los accesos. Ambos datasets fueron extraídos de Kaggle y contienen alrededor de 3000 y 70000 registros, respectivamente.
+## 📊 Data
+We will use two Kaggle datasets to simulate our SQL parser: [NBA](https://www.kaggle.com/datasets/ethanchen44/nba-playoff-predictions) and [Tornados](https://www.kaggle.com/ datasets/danbraswell/us-tornado-dataset-1950-2021). These datasets contain NBA playoff predictions and US tornado data, respectively, we will use a different file organization structure for each dataset and make one file containing the indices for each record for easy access. Both datasets were extracted from Kaggle and contain around 3,000 and 70,000 records, respectively.
 
-## 📝 Resultados esperados
-Después de realizar una comparación del rendimiento del AVL y el Extendible-Hashing en base a las funciones implementadas utilizando los dos datasets, mediremos las siguientes métricas:
+## 📝 Expected Results
+After performing a comparison of AVL and Extensible-Hashing performance based on the functions implemented using the two datasets, we will measure the following metrics:
 
-- ⏳ Tiempo de ejecución: Tiempo requerido para ejecutar cada función en cada estructura para cada dataset.
-- 🛰 Uso de memoria: Cantidad de memoria requerida para guardar cada archivo en cada estructura.
+- ⏳ Execution time: Time required to execute each function in each structure for each dataset.
+- 🛰 Memory usage: Amount of memory required to save each file in each structure.
 
-Es importante destacar que de antemano tenemos conocimiento sobre las fortalezas y debilidades de cada estructura. Los árboles AVL permiten búsquedas, búsquedas por rango e inserciones rápidas, pero su uso de memoria es alto. Por otro lado, el Extendible-Hashing utiliza menos memoria y soporta datasets grandes de manera eficiente, sin embargo, no soporta búsquedas por rango.
-
-Una vez concluido el proyecto, los resultados obtenidos nos permitirán comprender mejor las ventajas y desventajas de cada estructura de organización de archivos y su idoneidad para diferentes tipos de conjuntos de datos y operaciones.
+It is important to highlight that in advance we have knowledge about the strengths and weaknesses of each structure. AVL trees allow searches, range searches, and fast inserts, but their memory usage is high. On the other hand, Extendable-Hashing uses less memory and supports large datasets efficiently, however, it does not support range lookups.
 
 ## Técnicas de indexación
 ### AVL Tree
-A diferencia del Sequential File y el ISAM, el AVL ofrece una mayor eficiencia en la búsqueda y manipulación de registros individuales, pues es enteramente dinámico. Esto lo hace más adecuado para aplicaciones en las que se necesitan búsquedas frecuentes y eficientes de registros. Para aplicaciones que requieren busquedas por rango de valores en la clave de indexacion resulta particularmente útil.
-Aún así, reconocemos que el ISAM puede ser más eficiente en términos de uso de memoria ya que no necesita almacenar la estructura completa del árbol como lo hace el AVL File.
+Unlike Sequential File and ISAM, AVL offers greater efficiency in searching and manipulating individual records, as it is entirely dynamic. This makes it more suitable for applications where frequent and efficient record lookups are needed. For applications that require searches by range of values in the index key it is particularly useful.  
+Still, we acknowledge that ISAM can be more efficient in terms of memory usage since it doesn't need to store the entire tree structure like the AVL File does.
 
 ### Extensible Hashing
-Tanto el Extensible Hashing como el B+ Tree son estructuras de organización de archivos eficientes y muy utilizadas en la actualidad. 
+Both Extensible Hashing and the B+ Tree are efficient file organization structures that are widely used today.
 
-En cuanto a la inserción de nuevos registros, ambas estructuras son muy eficientes, pero el Extensible Hashing tiene una ventaja en este aspecto ya que es más fácil de balancear y manejar. En el B+ Tree, si se realiza una inserción que rompe la regla de balanceo del árbol, puede requerir una reorganización costosa y compleja. En otros tipos de extensible hashing, el B+ Tree es más eficiente en la eliminación de registros, ya que elimina los registros directamente de las hojas del árbol, mientras que en el Extensible Hashing se tiene que reorganizar las celdas libres. En este caso no es asi, lo hemos hecho de una manera para que las eliminaciones sean mas eficientes.
+In terms of inserting new records, both structures are very efficient, but Extensible Hashing has an advantage in this regard as it is easier to balance and manage. In the B+ Tree, if an insert is made that breaks the tree balancing rule, it may require an expensive and complex reorganization. In other types of extensible hashing, the B+ Tree is more efficient in deleting records, since it deletes the records directly from the leaves of the tree, while in the Extensible Hashing the free cells have to be rearranged. In this case it is not like that, we have done it in a way so that the eliminations are more efficient.
 
-El B+ Tree es más adecuado para trabajar con conjuntos de datos grandes y dispersos, mientras que el Extensible Hashing es más adecuado para conjuntos de datos pequeños y densos. Además, el B+ Tree es más flexible y puede manejar una amplia gama de operaciones de búsqueda, como búsqueda por rango y búsqueda con múltiples claves, mientras que el Extensible Hashing solo puede manejar búsquedas por clave exacta.
+The B+ Tree is more suitable for working with large and sparse data sets, while the Extensible Hashing is more suitable for small and dense data sets. In addition, the B+ Tree is more flexible and can handle a wide range of lookups, such as range lookup and multi-key lookup, while Extensible Hashing can only handle exact key lookups.
 
-Sobre todo, el extendible hashing nos permite indexar por igualdad, a diferencia del AVL que ya estamos haciendo.
+Above all, extensible hashing allows us to index for equality, unlike the AVL we are already doing.
 
-Para ser sinceros, a final de cuentas elegimos el hash para no codear el B+ 😌👍 honestidad ante todo.
+To be honest, in the end we chose the hash so as not to code the B+ 😌👍, honesty above all.
 
-## Documentación Parser
+## Parser Documentation
 
-📝 Insertar todos los registros de un csv a una tabla.  
+📝 Insert all the records from a csv to a table.
 ```INSERT INTO table FROM file.csv```
 
-🔎 Buscar registros con la llave dentro de un rango.  
+🔎 Search records with the key within a range.
 ```SELECT * FROM table BETWEEN start end```
 
-🔍 Buscar registros con una llave especifica.  
+🔍 Search records with a specific key.
 ```SELECT * FROM table EQUALS value```
 
-🖍 Borrar registros que tengan una llave especifica.  
+🖍 Delete records that have a specific key.
 ```DELETE FROM table value```
 
 
-## Configuración
-En el folder de "BDII-MINIMAL-PROJECT/datos", añade un csv del cual se quiera extraer los datos. Despues simplemente corre el archivo:
+## Setting
+In the "BDII-MINIMAL-PROJECT/datos" folder, add a csv from which you want to extract the data. Then just run the file:
 - ./main.exe : Windows
 - ./a.out : Mac OS
 
-Y se ejecutara el archivo, despues unicamente queda realizar los queries, para copiar la base de datos en una estructura simplemente es hacer INSERT INTO tabla FROM archivo.csv. 
+And the file will be executed, then all that remains is to perform the queries, to copy the database in a structure it is simply to do INSERT INTO table FROM file.csv.
 
-> Antes de hacer eso se debe crear un **struct** con los registros y sus campos para posteriormente en el ```main.cpp``` reemplazar el ```RegistroNBA``` que viene por defecto con el registro creado. Para cambiar el **fill factor** del extensible hashing simplemente cambie el const int que se encuentra en el hash.h y despues vuelva a compilar.  
+> Before doing that, you must create a **struct** with the records and their fields to later in the ```main.cpp``` replace the ```RegistroNBA``` that comes by default with the created record . To change the **fill factor** of the extensible hashing simply change the const int found in the hash.h and then recompile.
 
-Ejemplo: ```g++ -std=c++20 main.cpp```
+Example: ```g++ -std=c++20 main.cpp```
 
-## Resultados Obtenidos
+## Results
 <p align="center"><img src="https://imgur.com/TXwXGPF.png" width=400></p>
 <p align="center"><img src="https://imgur.com/Kdd2A9g.png" width=400></p>
 <p align="center"><img src="https://imgur.com/A8fAH1H.png" width=400></p>
 <p align="center"><img src="https://imgur.com/ssntMRr.png" width=400></p>
 
-Vemos que para las inserciones tanto el AVL como el Hash demoran mas tiempo. Sin embargo, el Hash demora mas. Nos preguntamos por que seria eso, dado que las complejidades teoricas decian que la insercion del hash es de O(1), y luego determinamos que el numero de buckets en linea seria de aproximadamente 50 con el numero de datos mas grande. Ademas la implementacion del hash realiza una busqueda (es decir realiza dos "pasadas" sobre el archivo: la busqueda y la insercion propiamente dicha) para determinar unicidad a difierencia del AVL, que simplemente inserta el valor dado que es un multimap. Podemos ver sin embargo que el hash es mas eficiente con menos datos, cuando sus buckets aun no estan llenos. Sobre el AVl vemos que su tiempo crece considerablemente mas lento, pero aun mustra una forma curva sugiriendo que su comportamiento por algun motivo no es del todo logarimico como se sabe de la teoria (es probable que se deba a las inserciones en las linked lists que conforman sus nodos).
+We see that for the insertions, both the AVL and the Hash take more time. However, the Hash takes longer. We wondered why that would be, since the theoretical complexities said that the insert hash is O(1), and then we determined that the number of buckets online would be about 50 with the largest data count. In addition, the hash implementation performs a search (that is, it performs two "passes" over the file: the search and the insertion itself) to determine uniqueness, unlike the AVL, which simply inserts the value given that it is a multimap. We can see however that hashing is more efficient with less data, when your buckets are not yet full. On the AVl we see that its time grows considerably slower, but it still shows a curved shape suggesting that its behavior for some reason is not completely logarimic as is known from theory (it is probably due to the insertions in the linked lists that make up their nodes).
 
-El AVL como era esperado es muchisimo mas rapido en todas las busquedas por rango, y a pesar de los pocos puntos de datos pareciera asomar una complejidad logaritmica, aunque con lo rapido que es tambien podria ser la variacion de corrida a corrida.
+The AVL as expected is much faster in all range searches, and despite the few data points it seems to show a logarithmic complexity, although with how fast it is it could also be the run-to-run variation.
 
-De los tiempos de busqueda no podemos concluir mucho, pues ambos son relativamente bajos y estan sujetos a varianza de muestra a muestra. Sin embargo podemos ver una tendencia del AVL a desempeñarse peor cuando hay menos datos en comparacion al hash. Nuevamente, esto debe ser por culpa de los encadenamientos si es que no se trata de la mencionada varianza de muestra a muestra.
+We cannot conclude much about the search times, since both are relatively short and are subject to sample-to-sample variance. However we can see a tendency for AVL to perform worse when there is less data compared to hash. Again, this must be because of the linkages if it is not the aforementioned sample-to-sample variance.
 
-Es evidente sin embargo que para conseguir todos los beneficios del AVL se paga el precio en memoria: el grafico indica que si bien ambos crecen en tamaño de forma lineal, el tamaño extra de cada nodo del AVL se acumula rápidamente.
-
-## Video funcionamiento Extendible Hashing
-Tras finalizar la clase, nos dimos cuenta que el error era que pusimos como max_index del extendible hashing 32 y al parecer eso genera problema no se por que, despues con un numero como 16 si funcionaba todo correctamente.
-https://drive.google.com/drive/folders/1s8VDEkBeCJ9y53u2AWoeb6a0ySF9ZWo4?usp=share_link
-
+It is evident, however, that to get all the benefits of AVL, the price is paid in memory: the graph indicates that although both grow in size linearly, the extra size of each AVL node accumulates quickly.
